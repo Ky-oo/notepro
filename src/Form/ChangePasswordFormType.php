@@ -43,10 +43,7 @@ class ChangePasswordFormType extends AbstractType
                 ],
                 'first_options' => [
                     'constraints' => [
-                        new Assert\Regex([ 'pattern' => '/\d/', 'message' => 'Le mot de passe doit contenir au moins un chiffre.', ]),
-                        new Assert\Regex([ 'pattern' => '/[A-Z]/', 'message' => 'Le mot de passe doit contenir au moins une lettre majuscule.', ]),
-                        new Assert\Regex([ 'pattern' => '/[a-z]/', 'message' => 'Le mot de passe doit contenir au moins une lettre minuscule.', ]),
-                        new Assert\Regex([ 'pattern' => '/[^A-Za-z0-9]/',]),
+                        new PasswordStrength(['minScore' => PasswordStrength::STRENGTH_WEAK,]),
                         new NotBlank([
                             'message' => 'Saisissez un mot de passe',
                         ]),

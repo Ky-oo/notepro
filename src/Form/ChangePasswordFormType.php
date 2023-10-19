@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ChangePasswordFormType extends AbstractType
 {
@@ -42,6 +43,10 @@ class ChangePasswordFormType extends AbstractType
                 ],
                 'first_options' => [
                     'constraints' => [
+                        new Assert\Regex([ 'pattern' => '/\d/', 'message' => 'Le mot de passe doit contenir au moins un chiffre.', ]),
+                        new Assert\Regex([ 'pattern' => '/[A-Z]/', 'message' => 'Le mot de passe doit contenir au moins une lettre majuscule.', ]),
+                        new Assert\Regex([ 'pattern' => '/[a-z]/', 'message' => 'Le mot de passe doit contenir au moins une lettre minuscule.', ]),
+                        new Assert\Regex([ 'pattern' => '/[^A-Za-z0-9]/',]),
                         new NotBlank([
                             'message' => 'Saisissez un mot de passe',
                         ]),

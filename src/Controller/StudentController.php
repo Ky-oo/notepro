@@ -108,7 +108,8 @@ class StudentController extends AbstractController
 
         return $this->render('student/mygrades.html.twig', [
             'student' => $student,
-            'grades' => $student->getGrades()
+            'grades' => $student->getGrades(),
+            'moyenne' => $student->calculMoyenne()
 
         ]);
     }

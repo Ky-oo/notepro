@@ -74,4 +74,15 @@ class Student extends User
         }
         return null;
     }
+
+    public function calculMoyenne(){
+        $compteur = 0;
+        $total = 0;
+        foreach ($this->grades as $note){
+            $compteur++;
+            $total += $note->getGrade();
+        }
+        $moyenne = $total/$compteur;
+        return $moyenne;
+    }
 }

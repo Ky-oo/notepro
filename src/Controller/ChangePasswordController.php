@@ -27,6 +27,9 @@ class ChangePasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //check if the password set is different from the last 5 previous passwords
             $passOk = false;
+
+            $user->setRawPassword($form->get('plainPassword')->getData());
+
             $nbPreviousPasswords = $user->getPreviousPasswords()->count();
 
             for ($i = $nbPreviousPasswords - 1; $i >= $nbPreviousPasswords - 5 && $i >= 0; $i--){
@@ -39,10 +42,7 @@ class ChangePasswordController extends AbstractController
                 $this->addFlash('reset_password_error', 'Vous ne pouvez pas réutiliser l\'un de vos 5 derniers mots de passe');
             } else {
                 // Encode(hash) the plain password, and set it.
-                $encodedPassword = $passwordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                );
+                $encodedPassword = $passwordHasher->hashPassword($user, $form->get('plainPassword')->getData());
                 //encode the plain password for saving it as a previous password
                 $previousPassword = new PreviousPasswords($user);
                 $previousPassword->setPassword(

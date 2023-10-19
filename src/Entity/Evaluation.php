@@ -161,4 +161,15 @@ class Evaluation
         }
         return null;
     }
+
+    public function calculMoyenneEval(){
+        $compteur = 0;
+        $total = 0;
+        foreach ($this->grades as $note){
+            $compteur++;
+            $total += $note->getGrade();
+        }
+        $moyenne = $total/$compteur;
+        return $moyenne;
+    }
 }

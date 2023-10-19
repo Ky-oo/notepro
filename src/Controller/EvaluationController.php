@@ -8,6 +8,7 @@ use App\Entity\Student;
 use App\Form\EvaluationType;
 use App\Form\SetGradeType;
 use App\Repository\EvaluationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

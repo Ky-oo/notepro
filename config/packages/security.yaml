@@ -41,8 +41,7 @@ security:
         ROLE_ADMIN: [ROLE_PROFESSOR, ROLE_STUDENT]
     
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/configprof, roles: ROLE_ADMIN }
 
 when@test:
     security:

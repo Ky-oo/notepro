@@ -40,6 +40,7 @@ class EvaluationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $evaluation->setCategorie($form->get('categorie')->getData());
             $entityManager->persist($evaluation);
             $entityManager->flush();
 

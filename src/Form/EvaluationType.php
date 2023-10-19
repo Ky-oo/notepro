@@ -65,12 +65,11 @@ class EvaluationType extends AbstractType
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'placeholder' => 'Sélectionner une catégorie',
-                'choice_label' => 'categorie',
+                'choice_label' => 'libelle',
                 'multiple' => false,
                 'expanded' => false,
                 'label' => false,
                 'mapped' => false,
-
             ])
         ;
     }

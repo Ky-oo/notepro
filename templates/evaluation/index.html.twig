@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Date</th>
                 <th>Label</th>
+                <th>Catégorie</th>
                 <th>Bareme</th>
                 <th>Moyenne</th>
                 <th>actions</th>
@@ -22,6 +23,11 @@
                 <td>{{ evaluation.id }}</td>
                 <td>{{ evaluation.date ? evaluation.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ evaluation.label }}</td>
+                {% if evaluation.categorie is null %}
+                    <td>~</td>
+                {% else %}
+                <td>{{ evaluation.categorie.libelle }}</td>
+                    {% endif %}
                 <td>{{ evaluation.bareme }}</td>
                 <td>{{ evaluation.calculMoyenneEval }}</td>
                 <td>

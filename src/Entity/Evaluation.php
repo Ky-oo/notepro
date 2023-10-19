@@ -40,6 +40,10 @@ class Evaluation
     #[ORM\OneToMany(mappedBy: 'evaluation', targetEntity: Grade::class, orphanRemoval: true)]
     private Collection $grades;
 
+    #[ORM\ManyToOne]
+    private ?Categorie $Categorie = null;
+
+
     public function __construct()
     {
         $this->grades = new ArrayCollection();
@@ -163,13 +167,26 @@ class Evaluation
     }
 
     public function calculMoyenneEval(){
-        $compteur = 0;
+        $compteur = 1;
         $total = 0;
         foreach ($this->grades as $note){
             $compteur++;
             $total += $note->getGrade();
         }
         $moyenne = $total/$compteur;
+
         return $moyenne;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(?Categorie $Categorie): static
+    {
+        $this->Categorie = $Categorie;
+
+        return $this;
     }
 }
